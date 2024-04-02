@@ -1,0 +1,19 @@
+version: "3"
+services:
+  app:
+    image: rxstoinkboy/task-manager-express-api
+    build: ./task-manager-express-api
+    ports:
+      - 3000:${PORT}
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=${MONGO_URI}
+      - PORT=${PORT}
+    command: npm run start:prod
+  client:
+    image: rxstoinkboy/task-manager-vue-client
+    build: ./task-manager-vue-client
+    ports:
+      - 5173:80
+    environment:
+      NODE_ENV: production
